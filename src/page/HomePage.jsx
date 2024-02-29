@@ -31,13 +31,21 @@ const HomePage = ({ countries, setCountries }) => {
   useEffect(() => {
     if (!countries.length)
       axios.get(ALL_COUNTRIES).then(({ data }) => setCountries(data));
+    // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    handleSearch();
+    // eslint-disable-next-line
+  }, [countries]);
 
   return (
     <>
       <Controls onSearch={handleSearch} />
       <List>
         {filteredCountries.map((c) => {
+          console.log(c);
+
           const countryInfo = {
             img: c.flags.png,
             name: c.name,
